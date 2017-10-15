@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Olibia Tsati']
   spec.email         = ['olibia@hardpixel.eu']
   spec.summary       = %q{Base ActiveRecord models for a CMS}
-  spec.description   = %q{Generates base models Page, Post, Post Categories, Post Tags and Post Comments.}
+  spec.description   = %q{Generates base models Page, Post, Post Categories and Post Tags.}
   spec.homepage      = 'https://github.com/hardpixel/cms-basics'
   spec.license       = 'MIT'
   spec.files         = Dir['{lib/**/*,[A-Z]*}']
