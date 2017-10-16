@@ -12,6 +12,7 @@ module Cms
     class_option :post, type: :boolean, default: true, desc: 'Add post table.'
     class_option :category, type: :boolean, default: true, desc: 'Add category table.'
     class_option :tag, type: :boolean, default: true, desc: 'Add tag table.'
+    class_option :template, type: :boolean, default: true, desc: 'Add template table.'
 
     def create_migration_file
       if options.page?
@@ -32,6 +33,10 @@ module Cms
       if options.tag?
         template 'model/tag.rb', 'app/models/tag.rb'
         migration_template 'migration/tag.rb', 'db/migrate/create_tags.rb'
+      end
+
+      if options.template?
+        migration_template 'migration/template.rb', 'db/migrate/create_templates.rb'
       end
     end
 

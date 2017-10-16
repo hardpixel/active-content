@@ -4,7 +4,6 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.text   :content
       t.text   :excerpt
-      t.string :template
 
       t.timestamps
     end
