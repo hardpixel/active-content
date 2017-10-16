@@ -4,6 +4,7 @@ Generates base models Page, Post, Post Categories and Post Tags.
 
 [![Gem Version](https://badge.fury.io/rb/cms_basics.svg)](https://badge.fury.io/rb/cms_basics)
 [![Build Status](https://travis-ci.org/hardpixel/cms-basics.svg?branch=master)](https://travis-ci.org/hardpixel/cms-basics)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fe84902f0ca054f8ef07/maintainability)](https://codeclimate.com/github/hardpixel/cms-basics/maintainability)
 
 ## Installation
 
