@@ -1,4 +1,4 @@
-module CmsBasics
+module Cms
   module Taggable
     extend ActiveSupport::Concern
 

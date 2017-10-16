@@ -1,3 +1,4 @@
 class Post < ApplicationRecord
-  include CmsBasics::Post
+  # Include concerns
+  include Cms::Post
 end
