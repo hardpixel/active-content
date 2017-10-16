@@ -1,4 +1,5 @@
 require "ancestry"
+require "active_record"
 require "cms_basics/version"
 require_relative "cms_basics/categorizable"
 require_relative "cms_basics/taggable"
