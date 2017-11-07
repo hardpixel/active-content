@@ -2,7 +2,7 @@ require 'rails/generators'
 require 'rails/generators/migration'
 require 'rails/generators/active_record'
 
-module Cms
+module CmsBasics
   class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
 
