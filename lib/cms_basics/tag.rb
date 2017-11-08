@@ -1,12 +1,12 @@
 module Cms
-  module Page
+  module Tag
     extend ActiveSupport::Concern
 
     included do
       include Cms::Templatable
-      
-      # Set ancestry for tree organization
-      has_ancestry orphan_strategy: :adopt
+
+      # Has associations
+      has_many :taggings
     end
   end
 end
