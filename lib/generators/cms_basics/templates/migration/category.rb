@@ -17,6 +17,6 @@ class CreateCategories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :categorizations, [:categorizable_id, :categorizable_type], unique: true, name: :index_categorizations_on_categorizable_attribute
+    add_index :categorizations, [:categorizable_id, :categorizable_type, :category_id], unique: true, name: :index_categorizations_on_categorizable_attribute
   end
 end
