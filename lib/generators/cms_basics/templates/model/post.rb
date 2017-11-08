@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
-  # Include concerns
-  include Cms::Post
+  # Add categories and tags support
+  # include Cms::Categorizable
+  # include Cms::Taggable
 end

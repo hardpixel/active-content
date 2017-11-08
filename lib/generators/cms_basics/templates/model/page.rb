@@ -1,4 +1,7 @@
 class Page < ApplicationRecord
-  # Include concerns
-  include Cms::Page
+  # Add template support
+  # include Cms::Templatable
+
+  # Set ancestry for tree organization
+  has_ancestry orphan_strategy: :adopt
 end

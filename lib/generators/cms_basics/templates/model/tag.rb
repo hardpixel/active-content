@@ -1,3 +1,4 @@
 class Tag < ApplicationRecord
-  include Cms::Tag
+  # Has associations
+  has_many :taggings
 end
