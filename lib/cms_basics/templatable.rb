@@ -9,10 +9,10 @@ module Cms
       extend Enumerize
 
       # Has associations
-      has_one :template, as: :templatable, class_name: 'Template', autosave: true, dependent: :destroy
+      has_one :view_template, as: :templatable, class_name: 'Template', autosave: true, dependent: :destroy
 
       # Delegations
-      delegate_attributes :name, to: :template, prefix: true
+      delegate_attributes :template, to: :view_template
 
       # Get records that have template (specific or not)
       scope :with_template, -> (names = nil) {
@@ -36,7 +36,7 @@ module Cms
     class_methods do
       # Set available templates as enumerized attribute
       def templates(names=[])
-        enumerize :template_name, in: [:default, *Array(names)], default: :default
+        enumerize :template, in: Array(names)
       end
     end
   end
