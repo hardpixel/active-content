@@ -1,5 +1,6 @@
 require "active_support"
 require "ancestry"
+require "enumerize"
 require "cms_basics/categorizable"
 require "cms_basics/taggable"
 require "cms_basics/templatable"

@@ -6,6 +6,7 @@ module Cms
 
     included do
       include ActiveDelegate
+      extend Enumerize
 
       # Has associations
       has_one :template, as: :templatable, class_name: 'Template', autosave: true, dependent: :destroy
@@ -33,9 +34,9 @@ module Cms
     end
 
     class_methods do
-      # Set available templates as enum
-      def set_templates(names=[])
-        enum template_name: [:default, *Array(names)], default: 0
+      # Set available templates as enumerized attribute
+      def templates(names=[])
+        enumerize :template_name, in: [:default, *Array(names)], default: :default
       end
     end
   end
