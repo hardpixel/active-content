@@ -31,6 +31,8 @@ module Cms
           where.not template: names
         end
       }
+
+      before_save { self.view_template = nil unless template? }
     end
 
     class_methods do
