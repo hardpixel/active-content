@@ -18,6 +18,6 @@ class CreateMedia < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :attachments, [:attachable_id, :attachable_type, :name], unique: true, name: :index_attachments_on_attachable_attribute
+    add_index :attachments, [:attachable_id, :attachable_type, :medium_id, :name], unique: true, name: :index_attachments_on_attachable_attribute
   end
 end
