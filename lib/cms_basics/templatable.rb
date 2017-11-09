@@ -11,34 +11,44 @@ module Cms
       # Has associations
       has_one :view_template, as: :templatable, class_name: 'Template', autosave: true, dependent: :destroy
 
-      # Delegations
+      # Delegate attributes
       delegate_attributes :template, to: :view_template
 
       # Get records that have template (specific or not)
-      scope :with_template, -> (names = nil) {
-        if names.nil?
-          where.not template: nil
+      scope :with_template, -> (*names) do
+        query = self.includes(:view_template)
+        named = { templates: { template: names } }
+        blank = { templates: { template: nil } }
+
+        if names.empty?
+          query.where.not blank
         else
-          where template: names
+          query.where named
         end
-      }
+      end
 
       # Get records that don't have template (specific or not)
-      scope :without_template, -> (names = nil) {
-        if names.nil?
-          where template: nil
-        else
-          where.not template: names
-        end
-      }
+      scope :without_template, -> (*names) do
+        query = self.includes(:view_template)
+        named = { templates: { template: names } }
+        blank = { templates: { template: nil } }
 
-      before_save { self.view_template = nil unless template? }
+        if names.empty?
+          query.where blank
+        else
+          query.where(blank).or(query.where.not(named))
+        end
+      end
+
+      # Allow saving without template
+      before_save { self.view_template = nil if template.nil? }
     end
 
     class_methods do
       # Set available templates as enumerized attribute
-      def templates(names=[])
-        enumerize :template, in: Array(names)
+      def templates(*args)
+        args.extract_options!
+        enumerize :template, in: Array(args).flatten, predicates: { prefix: true }
       end
     end
   end
