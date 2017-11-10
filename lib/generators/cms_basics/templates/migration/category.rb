@@ -1,6 +1,7 @@
 class CreateCategories < ActiveRecord::Migration[5.0]
   def change
     create_table :categories do |t|
+      t.string :type
       t.string :name, null: false
       t.text   :description
       t.string :ancestry
@@ -8,6 +9,7 @@ class CreateCategories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    add_index :categories, :type
     add_index :categories, :ancestry
 
     create_table :categorizations do |t|
