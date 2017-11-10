@@ -2,7 +2,7 @@ require 'active_support'
 require 'ancestry'
 require 'enumerize'
 require 'carrierwave'
-require 'cms_basics/model'
+require 'cms_basics/callbacks'
 require 'cms_basics/categorizable'
 require 'cms_basics/taggable'
 require 'cms_basics/templatable'
@@ -16,5 +16,8 @@ require 'cms_basics/models/attachment'
 require 'cms_basics/version'
 
 module CmsBasics
-  # Your code goes here...
+end
+
+ActiveSupport.on_load(:active_record) do
+  include Cms::Callbacks
 end

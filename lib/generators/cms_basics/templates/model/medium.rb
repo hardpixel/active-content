@@ -1,4 +1,4 @@
 class Medium < ApplicationRecord
-  # CMS Medium Model
-  include Cms::Model::Medium
+  # Mount carrierwave uploader
+  mount_uploader :file
 end
