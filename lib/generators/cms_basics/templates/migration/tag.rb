@@ -1,7 +1,7 @@
 class CreateTags < ActiveRecord::Migration[5.0]
   def change
     create_table :tags do |t|
-      t.string :type
+      t.string :type, default: 'Tag'
       t.string :name, null: false
       t.text   :description
 
