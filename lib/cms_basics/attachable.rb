@@ -19,7 +19,7 @@ module Cms
           end
 
           define_method :"#{name}_id=" do |value|
-            send :"#{name}=", Medium.find(value)
+            send :"#{name}=", Medium.find_by_id(value)
           end
         end
       end
