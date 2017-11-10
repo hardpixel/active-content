@@ -12,15 +12,15 @@ require 'cms_basics/version'
 module CmsBasics
   extend ActiveSupport::Concern
 
-  autoload :Callbacks,     'cms_basics/callbacks'
   autoload :Taxonomizable, 'cms_basics/taxonomizable'
   autoload :Templatable,   'cms_basics/templatable'
+  autoload :Mediable,      'cms_basics/mediable'
   autoload :Attachable,    'cms_basics/attachable'
 
   included do
-    include CmsBasics::Callbacks
     include CmsBasics::Taxonomizable
     include CmsBasics::Templatable
+    include CmsBasics::Mediable
     include CmsBasics::Attachable
   end
 end

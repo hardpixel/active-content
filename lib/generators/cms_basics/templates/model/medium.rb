@@ -1,4 +1,4 @@
 class Medium < ApplicationRecord
   # Mount carrierwave uploader
-  mount_uploader :file
+  has_uploader
 end
