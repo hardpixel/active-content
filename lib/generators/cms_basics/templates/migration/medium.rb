@@ -1,7 +1,7 @@
 class CreateMedia < ActiveRecord::Migration[5.0]
   def change
     create_table :media do |t|
-      t.string :file
+      t.string :file, null: false
       t.string :name, null: false
       t.text   :description
       t.string :media_type
