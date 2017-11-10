@@ -1,4 +1,4 @@
-module Cms
+module CmsBasics
   module Taxonomizable
     extend ActiveSupport::Concern
 

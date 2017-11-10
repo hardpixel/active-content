@@ -1,9 +1,9 @@
-module Cms
+module CmsBasics
   module Attachable
     extend ActiveSupport::Concern
 
     class_methods do
-      def attachment(name, options={})
+      def has_attachment(name, options={})
         assoc_opts = { as: :attachable, class_name: 'Attachment', autosave: true, dependent: :destroy }
         assoc_proc = -> { where name: name }
 
