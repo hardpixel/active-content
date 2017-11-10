@@ -1,5 +1,5 @@
 module Cms
-  module Extensions
+  module Model
     # Category
     module Category
       extend ActiveSupport::Concern
@@ -39,15 +39,3 @@ module Cms
     end
   end
 end
-
-# if defined? Category
-#   ::Category.send :include, Cms::Extensions::Category
-# end
-#
-# if defined? Tag
-#   ::Tag.send :include, Cms::Extensions::Tag
-# end
-#
-# if defined? Medium
-#   ::Medium.send :include, Cms::Extensions::Medium
-# end
