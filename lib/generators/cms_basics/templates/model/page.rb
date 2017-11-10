@@ -1,7 +1,7 @@
 class Page < ApplicationRecord
   # Add template support
-  # include Cms::Templatable
+  # has_templates :home, :blog
 
   # Set ancestry for tree organization
-  has_ancestry orphan_strategy: :adopt
+  # has_ancestry orphan_strategy: :adopt
 end
