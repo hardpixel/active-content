@@ -5,7 +5,7 @@ class CreateUploads < ActiveRecord::Migration[5.0]
       t.string :file, null: false
       t.string :name, null: false
       t.text   :description
-      t.string :file_type
+      t.string :media_type
       t.string :sub_type
 
       t.timestamps
