@@ -7,7 +7,7 @@ module CmsBasics
     include Rails::Generators::Migration
 
     # Model names
-    MODEL_NAMES  = ['page', 'post', 'category', 'tag', 'medium', 'template'].freeze
+    MODEL_NAMES  = ['content', 'taxonomy', 'upload', 'template'].freeze
     MIGRATE_ONLY = ['template'].freeze
 
     desc 'Generates migrations to add CMS tables.'

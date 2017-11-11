@@ -1,4 +1,4 @@
-class Page < ApplicationRecord
+class Content < ApplicationRecord
   # Add template support
   # has_templates :home, :blog
 

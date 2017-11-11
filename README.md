@@ -1,6 +1,6 @@
 # CmsBasics
 
-Generates base models Page, Post, Post Categories and Post Tags.
+Generates base inheritable models Content, Taxonomy, Upload and Template.
 
 [![Gem Version](https://badge.fury.io/rb/cms_basics.svg)](https://badge.fury.io/rb/cms_basics)
 [![Build Status](https://travis-ci.org/hardpixel/cms-basics.svg?branch=master)](https://travis-ci.org/hardpixel/cms-basics)

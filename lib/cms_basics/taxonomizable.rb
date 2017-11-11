@@ -3,28 +3,15 @@ module CmsBasics
     extend ActiveSupport::Concern
 
     class_methods do
-      def has_categories(name, options={})
+      def has_taxonomy(name, options={})
         options = options.reverse_merge(class_name: name.to_s.classify)
-        options = options.merge(through: :categorizations, source: :category)
+        options = options.merge(through: :taxonomizations, source: :taxonomy)
 
-        has_many :categorizations, as: :categorizable
+        has_many :taxonomizations, as: :taxonomizable
         has_many name, options
 
-        scope :categorized,   -> { joins(name).distinct }
-        scope :with_category, -> ids { categorized.where name => { id: ids } }
-
-        _define_taxonomy_list_methods(name)
-      end
-
-      def has_tags(name, options={})
-        options = options.reverse_merge(class_name: name.to_s.classify)
-        options = options.merge(through: :taggings, source: :tag)
-
-        has_many :taggings, as: :taggable
-        has_many name, options
-
-        scope :tagged,   -> { joins(name).distinct }
-        scope :with_tag, -> ids { tagged.where name => { id: ids } }
+        scope :taxonomized,   -> { joins(name).distinct }
+        scope :with_taxonomy, -> ids { taxonomized.where name => { id: ids } }
 
         _define_taxonomy_list_methods(name)
       end

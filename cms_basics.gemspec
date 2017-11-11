@@ -6,10 +6,10 @@ require 'cms_basics/version'
 Gem::Specification.new do |spec|
   spec.name          = 'cms_basics'
   spec.version       = CmsBasics::VERSION
-  spec.authors       = ['Olibia Tsati']
-  spec.email         = ['olibia@hardpixel.eu']
+  spec.authors       = ['Olibia Tsati', 'Jonian Guveli']
+  spec.email         = ['info@hardpixel.eu']
   spec.summary       = %q{Base ActiveRecord models for a CMS}
-  spec.description   = %q{Generates base models Pages, Posts, Media, Templates, Categories and Tags.}
+  spec.description   = %q{Generates base inheritable models Content, Taxonomy, Upload and Template.}
   spec.homepage      = 'https://github.com/hardpixel/cms-basics'
   spec.license       = 'MIT'
   spec.files         = Dir['{lib/**/*,[A-Z]*}']
