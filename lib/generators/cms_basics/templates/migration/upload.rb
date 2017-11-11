@@ -14,13 +14,13 @@ class CreateUploads < ActiveRecord::Migration[5.0]
     add_index :uploads, :type
 
     create_table :attachments do |t|
-      t.string     :name
+      t.string     :field
       t.references :upload
       t.references :attachable, null: false, polymorphic: true, index: false
 
       t.timestamps
     end
 
-    add_index :attachments, [:attachable_id, :attachable_type, :upload_id, :name], unique: true, name: :index_attachments_on_attachable_attribute
+    add_index :attachments, [:attachable_id, :attachable_type, :upload_id, :field], unique: true, name: :index_attachments_on_attachable_attribute
   end
 end
