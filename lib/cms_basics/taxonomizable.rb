@@ -11,41 +11,32 @@ module CmsBasics
         has_many options[:through], setting
         has_many name, options
 
-        _define_taxonomy_scopes(name)
-        _define_taxonomy_list_methods(name, options)
+        define_method :"#{name}_list" do
+          self.send name
+        end
+
+        define_method :"#{name}_list=" do |names|
+          model = options[:class_name].classify.constantize
+          names = Array(names).map do |n|
+            model.find_by_name(n) || model.new(name: n)
+          end
+
+          self.send :"#{name}=", names
+        end
+
+        query = self.includes(name)
+        blank = { taxonomies: { id: nil } }
+
+        scope :"with_#{name}", -> (*ids) do
+          id = { taxonomies: { id: ids } }
+          ids.empty? ? query.where.not(blank) : query.where(id)
+        end
+
+        scope :"without_#{name}", -> (*ids) do
+          id = { taxonomies: { id: ids } }
+          ids.empty? ? query.where(blank) : query.where(blank).or(query.where.not(id))
+        end
       end
-
-      private
-
-        def _define_taxonomy_scopes(name)
-          query = self.includes(name)
-          blank = { taxonomies: { id: nil } }
-
-          scope :"with_#{name}", -> (*ids) do
-            id = { taxonomies: { id: ids } }
-            ids.empty? ? query.where.not(blank) : query.where(id)
-          end
-
-          scope :"without_#{name}", -> (*ids) do
-            id = { taxonomies: { id: ids } }
-            ids.empty? ? query.where(blank) : query.where(blank).or(query.where.not(id))
-          end
-        end
-
-        def _define_taxonomy_list_methods(name, options)
-          define_method :"#{name}_list" do
-            self.send name
-          end
-
-          define_method :"#{name}_list=" do |names|
-            model = options[:class_name].classify.constantize
-            names = Array(names).map do |n|
-              model.find_by_name(n) || model.new(name: n)
-            end
-
-            self.send :"#{name}=", names
-          end
-        end
     end
   end
 end
