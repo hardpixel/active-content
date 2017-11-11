@@ -13,7 +13,7 @@ module CmsBasics
         delegate_attributes :template, to: :view_template
 
         before_save do
-          self.view_template = nil if template.nil?
+          self.view_template = nil if template.blank?
         end
 
         query = self.includes(:view_template)
