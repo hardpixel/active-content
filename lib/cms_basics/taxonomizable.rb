@@ -11,10 +11,26 @@ module CmsBasics
         has_many options[:through], setting
         has_many name, options
 
+        _define_taxonomy_scopes(name)
         _define_taxonomy_list_methods(name, options)
       end
 
       private
+
+        def _define_taxonomy_scopes(name)
+          query = self.includes(name)
+          blank = { taxonomies: { id: nil } }
+
+          scope :"with_#{name}", -> (*ids) do
+            id = { taxonomies: { id: ids } }
+            ids.empty? ? query.where.not(blank) : query.where(id)
+          end
+
+          scope :"without_#{name}", -> (*ids) do
+            id = { taxonomies: { id: ids } }
+            ids.empty? ? query.where(blank) : query.where(blank).or(query.where.not(id))
+          end
+        end
 
         def _define_taxonomy_list_methods(name, options)
           define_method :"#{name}_list" do
