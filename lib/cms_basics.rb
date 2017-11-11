@@ -14,13 +14,13 @@ module CmsBasics
 
   autoload :Taxonomizable, 'cms_basics/taxonomizable'
   autoload :Templatable,   'cms_basics/templatable'
-  autoload :Mediable,      'cms_basics/mediable'
+  autoload :Uploadable,    'cms_basics/uploadable'
   autoload :Attachable,    'cms_basics/attachable'
 
   included do
     include CmsBasics::Taxonomizable
     include CmsBasics::Templatable
-    include CmsBasics::Mediable
+    include CmsBasics::Uploadable
     include CmsBasics::Attachable
   end
 end
