@@ -8,14 +8,17 @@ module CmsBasics
         assoc_proc = -> { where field: field }
 
         multiple = options.delete(:multiple)
-        options  = options.reverse_merge(class_name: name.to_s.classify)
-        options  = options.merge(through: :"#{field}_attachments", source: :upload)
+        defaults = options.reverse_merge(class_name: name.to_s.classify, source: :upload)
 
         if multiple
-          has_many :"#{field}_attachments", assoc_proc, assoc_opts
+          options = defaults.merge(through: :"#{field}_attachments")
+
+          has_many options[:through], assoc_proc, assoc_opts
           has_many :"#{field}", options
         else
-          has_one :"#{field}_attachment", assoc_proc, assoc_opts
+          options = defaults.merge(through: :"#{field}_attachment")
+
+          has_one options[:through], assoc_proc, assoc_opts
           has_one :"#{field}", options
 
           define_method :"#{field}_id" do

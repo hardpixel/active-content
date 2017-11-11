@@ -4,11 +4,11 @@ module CmsBasics
 
     class_methods do
       def has_taxonomy(name, options={})
-        options = options.reverse_merge(class_name: name.to_s.classify)
-        options = options.merge(through: :"#{name}_taxonomizations", source: :taxonomy)
+        options = options.reverse_merge(class_name: name.to_s.classify, source: :taxonomy)
+        options = options.merge(through: :"#{name}_taxonomizations")
         setting = { as: :taxonomizable, class_name: 'Taxonomization', autosave: true, dependent: :destroy }
 
-        has_many :"#{name}_taxonomizations", setting
+        has_many options[:through], setting
         has_many name, options
 
         _define_taxonomy_list_methods(name, options)
