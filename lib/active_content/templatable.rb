@@ -1,4 +1,4 @@
-module CmsBasics
+module ActiveContent
   module Templatable
     extend ActiveSupport::Concern
 
@@ -9,7 +9,7 @@ module CmsBasics
 
         enumerize :template, in: templates, predicates: { prefix: true }
 
-        has_one :view_template, as: :templatable, class_name: 'Cms::Template', autosave: true, dependent: :destroy
+        has_one :view_template, as: :templatable, class_name: 'ActiveContent::Template', autosave: true, dependent: :destroy
         delegate_attribute :name, :string, to: :view_template, prefix: 'template', alias: :template
 
         before_save do

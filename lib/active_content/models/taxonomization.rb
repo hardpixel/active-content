@@ -1,4 +1,4 @@
-class Cms::Taxonomization < ApplicationRecord
+class ActiveContent::Taxonomization < ApplicationRecord
   self.table_name = 'taxonomizations'
 
   # Belongs associations

@@ -11,8 +11,6 @@ class CreateUploads < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :uploads, :type
-
     create_table :attachments do |t|
       t.string     :field
       t.references :upload

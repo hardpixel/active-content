@@ -1,4 +1,4 @@
-class Cms::Profile < ApplicationRecord
+class ActiveContent::Profile < ApplicationRecord
   self.table_name = 'profiles'
 
   # Belongs associations

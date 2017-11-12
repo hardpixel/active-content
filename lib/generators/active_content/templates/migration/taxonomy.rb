@@ -9,7 +9,6 @@ class CreateTaxonomies < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :taxonomies, :type
     add_index :taxonomies, :ancestry
 
     create_table :taxonomizations do |t|

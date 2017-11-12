@@ -1,4 +1,4 @@
-class Cms::Template < ApplicationRecord
+class ActiveContent::Template < ApplicationRecord
   self.table_name = 'templates'
 
   # Belongs associations

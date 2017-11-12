@@ -1,4 +1,4 @@
-module CmsBasics
+module ActiveContent
   module Metable
     extend ActiveSupport::Concern
 
@@ -6,7 +6,7 @@ module CmsBasics
       def has_meta(field, cast_type, options={})
         include ActiveDelegate
 
-        assoc_opts = { as: :metable, class_name: 'Cms::Metum', autosave: true, dependent: :destroy }
+        assoc_opts = { as: :metable, class_name: 'ActiveContent::Metum', autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
         value_opts = { to: :"#{field}_metum", prefix: field, alias: field, default: options[:default] }
 

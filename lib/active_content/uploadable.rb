@@ -1,4 +1,4 @@
-module CmsBasics
+module ActiveContent
   module Uploadable
     extend ActiveSupport::Concern
 

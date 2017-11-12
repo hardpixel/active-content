@@ -1,11 +1,11 @@
-module CmsBasics
+module ActiveContent
   module Relatable
     extend ActiveSupport::Concern
 
     class_methods do
       def has_related(name, field, options={})
         assoc_type = "#{name}".classify.constantize.base_class.to_s
-        assoc_opts = { as: :relatable, class_name: 'Cms::Relation', autosave: true, dependent: :destroy }
+        assoc_opts = { as: :relatable, class_name: 'ActiveContent::Relation', autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
 
         multiple = options.delete(:multiple)

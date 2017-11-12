@@ -1,4 +1,4 @@
-class Cms::Attachment < ApplicationRecord
+class ActiveContent::Attachment < ApplicationRecord
   self.table_name = 'attachments'
 
   # Belongs associations

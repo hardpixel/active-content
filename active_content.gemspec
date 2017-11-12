@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cms_basics/version'
+require 'active_content/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'cms_basics'
-  spec.version       = CmsBasics::VERSION
+  spec.name          = 'active_content'
+  spec.version       = ActiveContent::VERSION
   spec.authors       = ['Olibia Tsati', 'Jonian Guveli']
   spec.email         = ['info@hardpixel.eu']
   spec.summary       = %q{Base ActiveRecord models for a CMS}
   spec.description   = %q{Generates base inheritable models Content, Taxonomy, Upload and Template.}
-  spec.homepage      = 'https://github.com/hardpixel/cms-basics'
+  spec.homepage      = 'https://github.com/hardpixel/active-content'
   spec.license       = 'MIT'
   spec.files         = Dir['{lib/**/*,[A-Z]*}']
   spec.bindir        = 'exe'

@@ -1,4 +1,4 @@
-class Cms::Upload < ApplicationRecord
+class ActiveContent::Upload < ApplicationRecord
   self.table_name = 'uploads'
 
   # Mount carrierwave uploader

@@ -1,4 +1,4 @@
-module CmsBasics
+module ActiveContent
   module Taxonomizable
     extend ActiveSupport::Concern
 
@@ -6,7 +6,7 @@ module CmsBasics
       def has_taxonomy(name, options={})
         options = options.reverse_merge(class_name: name.to_s.classify, source: :taxonomy)
         options = options.merge(through: :"#{name}_taxonomizations")
-        setting = { as: :taxonomizable, class_name: 'Cms::Taxonomization', autosave: true, dependent: :destroy }
+        setting = { as: :taxonomizable, class_name: 'ActiveContent::Taxonomization', autosave: true, dependent: :destroy }
 
         has_many options[:through], setting
         has_many name, options

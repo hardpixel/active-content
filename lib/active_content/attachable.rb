@@ -1,10 +1,10 @@
-module CmsBasics
+module ActiveContent
   module Attachable
     extend ActiveSupport::Concern
 
     class_methods do
       def has_attachment(name, field, options={})
-        assoc_opts = { as: :attachable, class_name: 'Cms::Attachment', autosave: true, dependent: :destroy }
+        assoc_opts = { as: :attachable, class_name: 'ActiveContent::Attachment', autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
 
         multiple = options.delete(:multiple)

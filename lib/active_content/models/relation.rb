@@ -1,4 +1,4 @@
-class Cms::Relation < ApplicationRecord
+class ActiveContent::Relation < ApplicationRecord
   self.table_name = 'relations'
 
   # Belongs associations
