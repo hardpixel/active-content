@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ActiveContent::VERSION
   spec.authors       = ['Olibia Tsati', 'Jonian Guveli']
   spec.email         = ['info@hardpixel.eu']
-  spec.summary       = %q{Base ActiveRecord models for a CMS}
-  spec.description   = %q{Generates base inheritable models Content, Taxonomy, Upload and Template.}
+  spec.summary       = %q{STI ActiveRecord models for dynamic CMS models}
+  spec.description   = %q{Generates base inheritable models Content, Taxonomy, Upload, Meta, Profile and Template.}
   spec.homepage      = 'https://github.com/hardpixel/active-content'
   spec.license       = 'MIT'
   spec.files         = Dir['{lib/**/*,[A-Z]*}']

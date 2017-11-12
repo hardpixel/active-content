@@ -1,10 +1,10 @@
 # ActiveContent
 
-Generates base inheritable models Content, Taxonomy, Upload and Template.
+Generates base inheritable models Content, Taxonomy, Upload, Meta, Profile and Template.
 
 [![Gem Version](https://badge.fury.io/rb/active_content.svg)](https://badge.fury.io/rb/active_content)
 [![Build Status](https://travis-ci.org/hardpixel/active-content.svg?branch=master)](https://travis-ci.org/hardpixel/active-content)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fe84902f0ca054f8ef07/maintainability)](https://codeclimate.com/github/hardpixel/active-content/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e459d91f56445e525a3d/maintainability)](https://codeclimate.com/github/hardpixel/active-content/maintainability)
 
 ## Installation
 
