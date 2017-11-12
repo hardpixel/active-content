@@ -7,8 +7,7 @@ module CmsBasics
     include Rails::Generators::Migration
 
     # Model names
-    MODEL_NAMES  = ['content', 'taxonomy', 'upload', 'template', 'relation', 'metum'].freeze
-    MIGRATE_ONLY = ['template', 'relation'].freeze
+    MODEL_NAMES  = ['content', 'taxonomy', 'upload', 'template', 'relation', 'metum', 'profile'].freeze
 
     desc 'Generates migrations to add CMS tables.'
     source_root File.expand_path('../templates', __FILE__)
@@ -16,7 +15,6 @@ module CmsBasics
 
     def create_migration_file
       models.each do |model|
-        template "model/#{model}.rb", "app/models/#{model}.rb" unless model.in? MIGRATE_ONLY
         migration_template "migration/#{model}.rb", "db/migrate/create_#{model.pluralize}.rb"
       end
     end

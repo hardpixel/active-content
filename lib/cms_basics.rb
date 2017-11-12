@@ -3,10 +3,6 @@ require 'ancestry'
 require 'enumerize'
 require 'carrierwave'
 require 'active_delegate'
-require 'cms_basics/models/template'
-require 'cms_basics/models/taxonomization'
-require 'cms_basics/models/attachment'
-require 'cms_basics/models/relation'
 require 'cms_basics/version'
 
 module CmsBasics
@@ -31,6 +27,21 @@ module CmsBasics
   end
 end
 
+module Cms
+  extend ActiveSupport::Concern
+
+  autoload :Attachment,     'cms_basics/models/attachment'
+  autoload :Content,        'cms_basics/models/content'
+  autoload :Metum,          'cms_basics/models/metum'
+  autoload :Profile,        'cms_basics/models/profile'
+  autoload :Relation,       'cms_basics/models/relation'
+  autoload :Taxonomization, 'cms_basics/models/taxonomization'
+  autoload :Taxonomy,       'cms_basics/models/taxonomy'
+  autoload :Template,       'cms_basics/models/template'
+  autoload :Upload,         'cms_basics/models/upload'
+end
+
 ActiveSupport.on_load(:active_record) do
   include CmsBasics
+  include Cms
 end

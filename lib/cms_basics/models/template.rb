@@ -1,4 +1,6 @@
-class Template < ActiveRecord::Base
+class Cms::Template < ApplicationRecord
+  self.table_name = 'templates'
+
   # Belongs associations
   belongs_to :templatable, polymorphic: true, optional: true
 
