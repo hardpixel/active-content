@@ -12,6 +12,15 @@ module CmsBasics
 
         has_one :"#{field}_metum", assoc_proc, assoc_opts
         delegate_attribute :value, cast_type, value_opts
+
+        before_save do
+          current = send(field)
+          default = self.class.column_defaults["#{field}"]
+
+          if current.blank? or current == default
+            send :"#{field}_metum=", nil
+          end
+        end
       end
     end
   end
