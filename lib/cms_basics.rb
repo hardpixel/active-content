@@ -24,6 +24,7 @@ module CmsBasics
     include CmsBasics::Templatable
     include CmsBasics::Uploadable
     include CmsBasics::Attachable
+    include CmsBasics::Relatable
     include CmsBasics::Metable
   end
 end
