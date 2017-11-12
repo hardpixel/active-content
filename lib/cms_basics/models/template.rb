@@ -2,8 +2,8 @@ class Template < ActiveRecord::Base
   # Belongs associations
   belongs_to :templatable, polymorphic: true, optional: true
 
-  # Redefine template reader
-  def template
+  # Redefine name reader
+  def name
     super.nil? ? super : ActiveSupport::StringInquirer.new(super)
   end
 end
