@@ -15,7 +15,7 @@ module ActiveContent
 
     def create_migration_file
       models.each do |model|
-        migration_template "migration/#{model}.rb", "db/migrate/create_#{model.pluralize}.rb"
+        migration_template "#{model}.rb", "db/migrate/create_#{model.pluralize}.rb"
       end
     end
 
