@@ -18,6 +18,7 @@ module CmsBasics
   autoload :Attachable,    'cms_basics/attachable'
   autoload :Relatable,     'cms_basics/relatable'
   autoload :Metable,       'cms_basics/metable'
+  autoload :Profileable,   'cms_basics/profileable'
 
   included do
     include CmsBasics::Taxonomizable
@@ -26,6 +27,7 @@ module CmsBasics
     include CmsBasics::Attachable
     include CmsBasics::Relatable
     include CmsBasics::Metable
+    include CmsBasics::Profileable
   end
 end
 
