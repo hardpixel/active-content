@@ -6,7 +6,7 @@ module CmsBasics
       def has_profile
         include ActiveDelegate
 
-        has_one :profile, as: :profileable, autosave: true, dependent: :destroy
+        has_one :profile, as: :profileable, class_name: 'Cms::Profile', autosave: true, dependent: :destroy
         delegate_attributes to: :profile, allow_nil: true
 
         define_method :name do
