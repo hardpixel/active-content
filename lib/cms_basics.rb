@@ -17,13 +17,14 @@ module CmsBasics
   autoload :Uploadable,    'cms_basics/uploadable'
   autoload :Attachable,    'cms_basics/attachable'
   autoload :Relatable,     'cms_basics/relatable'
+  autoload :Metable,       'cms_basics/metable'
 
   included do
     include CmsBasics::Taxonomizable
     include CmsBasics::Templatable
     include CmsBasics::Uploadable
     include CmsBasics::Attachable
-    include CmsBasics::Relatable
+    include CmsBasics::Metable
   end
 end
 
