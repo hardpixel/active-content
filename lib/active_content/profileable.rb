@@ -21,11 +21,15 @@ module ActiveContent
         end
 
         define_method :name do
-          "#{first_name} #{last_name}".strip
+          if first_name or last_name
+            "#{first_name} #{last_name}".strip
+          end
         end
 
         define_method :gravatar do |size=48, default='mm'|
-          hash = Digest::MD5::hexdigest(try(:email))
+          mail = try(:email)
+          hash = Digest::MD5::hexdigest(mail) unless mail.nil?
+
           "https://www.gravatar.com/avatar/#{hash}?rating=PG&size=#{size}&default=#{default}"
         end
       end
