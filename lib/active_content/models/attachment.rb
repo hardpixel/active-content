@@ -1,4 +1,5 @@
 class ActiveContent::Attachment < ApplicationRecord
+  # Set table name
   self.table_name = 'attachments'
 
   # Belongs associations

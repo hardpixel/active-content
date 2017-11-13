@@ -1,4 +1,5 @@
 class ActiveContent::Relation < ApplicationRecord
+  # Set table name
   self.table_name = 'relations'
 
   # Belongs associations

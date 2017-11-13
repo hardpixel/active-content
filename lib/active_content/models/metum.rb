@@ -1,4 +1,5 @@
 class ActiveContent::Metum < ApplicationRecord
+  # Set table name
   self.table_name = 'meta'
 
   # Belongs associations

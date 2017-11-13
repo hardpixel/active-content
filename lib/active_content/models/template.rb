@@ -1,4 +1,5 @@
 class ActiveContent::Template < ApplicationRecord
+  # Set table name
   self.table_name = 'templates'
 
   # Belongs associations

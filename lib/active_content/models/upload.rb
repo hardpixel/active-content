@@ -2,7 +2,7 @@ class ActiveContent::Upload < ApplicationRecord
   # Set table name
   self.table_name = 'uploads'
 
-  # Mount media uploader
+  # Mount carrierwave uploader
   has_uploader
 
   # Define validations

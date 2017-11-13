@@ -1,4 +1,5 @@
 class ActiveContent::Taxonomization < ApplicationRecord
+  # Set table name
   self.table_name = 'taxonomizations'
 
   # Belongs associations
