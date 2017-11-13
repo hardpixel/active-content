@@ -3,11 +3,11 @@ module ActiveContent
     extend ActiveSupport::Concern
 
     class_methods do
-      def has_profile
+      def has_profile(options={})
         include ActiveDelegate
 
         has_one :profile, as: :profileable, class_name: 'ActiveContent::Profile', autosave: true, dependent: :destroy
-        delegate_attributes to: :profile, allow_nil: true
+        delegate_attributes options.except(:to).merge(to: :profile, allow_nil: true)
 
         before_save do
           prof_foreign = self.class.profiles_attribute_names.map(&:to_s)
