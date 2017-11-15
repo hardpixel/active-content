@@ -20,12 +20,6 @@ module ActiveContent
           end
         end
 
-        define_method :name do
-          if first_name or last_name
-            "#{first_name} #{last_name}".strip
-          end
-        end
-
         define_method :gravatar do |size=48, default='mm'|
           mail = try(:email)
           hash = Digest::MD5::hexdigest(mail) unless mail.nil?
