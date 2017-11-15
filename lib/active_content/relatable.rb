@@ -8,16 +8,17 @@ module ActiveContent
         assoc_opts = { as: :relatable, class_name: 'ActiveContent::Relation', autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
 
+        default  = options.delete(:default)
         multiple = options.delete(:multiple)
-        defaults = options.reverse_merge(class_name: "#{name}".classify, source: :item, source_type: assoc_type)
+        options  = options.reverse_merge(class_name: "#{name}".classify, source: :item, source_type: assoc_type)
 
         if multiple
-          options = defaults.merge(through: :"#{field}_relations")
+          options = options.merge(through: :"#{field}_relations")
 
           has_many options[:through], assoc_proc, assoc_opts
           has_many :"#{field}", options
         else
-          options = defaults.merge(through: :"#{field}_relation")
+          options = options.merge(through: :"#{field}_relation")
 
           has_one options[:through], assoc_proc, assoc_opts
           has_one :"#{field}", options
@@ -28,6 +29,21 @@ module ActiveContent
 
           define_method :"#{field}_id=" do |value|
             send :"#{field}=", "#{name}".classify.constantize.find_by_id(value)
+          end
+        end
+
+        if default
+          relation_method  = :"_relation_#{field}_default"
+          relation_default = default
+
+          define_singleton_method relation_method do
+            relation_default
+          end
+
+          after_initialize do |record|
+            if record.try(:"#{field}").blank?
+              record.send(:"#{field}=", self.class.try(relation_method))
+            end
           end
         end
       end
