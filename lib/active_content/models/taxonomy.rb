@@ -4,4 +4,7 @@ class ActiveContent::Taxonomy < ApplicationRecord
 
   # Define validations
   validates :name, presence: true
+
+  # Has associations
+  has_many :taxonomizations
 end
