@@ -4,7 +4,7 @@ module ActiveContent
 
     class_methods do
       def has_taxonomy(name, options={})
-        options = options.reverse_merge(class_name: name.to_s.classify, source: :taxonomy)
+        options = options.reverse_merge(class_name: "#{name}".classify, source: :taxonomy)
         options = options.merge(through: :"#{name}_taxonomizations")
         setting = { as: :taxonomizable, class_name: 'ActiveContent::Taxonomization', autosave: true, dependent: :destroy }
 
