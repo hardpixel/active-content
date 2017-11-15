@@ -38,5 +38,12 @@ module ActiveContent
         end
       end
     end
+
+    def has_taxonomized(name, options={})
+      assoc_name = "#{name}".pluralize
+      assoc_type = (options[:class_name] || "#{name}".classify).constantize.base_class.name
+
+      has_many :"#{assoc_name}", through: :taxonomizations, source: :taxonomizable, source_type: "#{assoc_type}"
+    end
   end
 end
