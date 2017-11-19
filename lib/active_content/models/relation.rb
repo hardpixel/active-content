@@ -1,4 +1,4 @@
-class ActiveContent::Relation < ApplicationRecord
+class ActiveContent::Relation < ActiveRecord::Base
   # Set table name
   self.table_name = 'relations'
 

@@ -1,4 +1,4 @@
-class ActiveContent::Attachment < ApplicationRecord
+class ActiveContent::Attachment < ActiveRecord::Base
   # Set table name
   self.table_name = 'attachments'
 

@@ -1,4 +1,4 @@
-class ActiveContent::Profile < ApplicationRecord
+class ActiveContent::Profile < ActiveRecord::Base
   # Set table name
   self.table_name = 'profiles'
 

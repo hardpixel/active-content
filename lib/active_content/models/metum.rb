@@ -1,4 +1,4 @@
-class ActiveContent::Metum < ApplicationRecord
+class ActiveContent::Metum < ActiveRecord::Base
   # Set table name
   self.table_name = 'meta'
 

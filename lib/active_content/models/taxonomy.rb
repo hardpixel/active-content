@@ -1,4 +1,4 @@
-class ActiveContent::Taxonomy < ApplicationRecord
+class ActiveContent::Taxonomy < ActiveRecord::Base
   # Set table name
   self.table_name = 'taxonomies'
 

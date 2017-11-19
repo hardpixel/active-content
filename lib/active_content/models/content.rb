@@ -1,4 +1,4 @@
-class ActiveContent::Content < ApplicationRecord
+class ActiveContent::Content < ActiveRecord::Base
   # Set table name
   self.table_name = 'contents'
 

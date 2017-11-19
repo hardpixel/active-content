@@ -1,4 +1,4 @@
-class ActiveContent::Upload < ApplicationRecord
+class ActiveContent::Upload < ActiveRecord::Base
   # Set table name
   self.table_name = 'uploads'
 

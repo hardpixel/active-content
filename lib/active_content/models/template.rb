@@ -1,4 +1,4 @@
-class ActiveContent::Template < ApplicationRecord
+class ActiveContent::Template < ActiveRecord::Base
   # Set table name
   self.table_name = 'templates'
 
