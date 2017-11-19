@@ -15,6 +15,13 @@ module ActiveContent
 
           has_many options[:through], assoc_proc, assoc_opts
           has_many :"#{field}", options
+
+          define_method :"#{field}_urls" do |size=nil|
+            iv_name = "@#{field}_#{size}_urls"
+
+            instance_variable_get(iv_name) ||
+            instance_variable_set(iv_name, send(:"#{field}").map { |i| i.try(:file_url, size) })
+          end
         else
           options = defaults.merge(through: :"#{field}_attachment")
 
@@ -27,6 +34,13 @@ module ActiveContent
 
           define_method :"#{field}_id=" do |value|
             send :"#{field}=", Upload.find_by_id(value)
+          end
+
+          define_method :"#{field}_url" do |size=nil|
+            iv_name = "@#{field}_#{size}_url"
+
+            instance_variable_get(iv_name) ||
+            instance_variable_set(iv_name, send(:"#{field}").try(:file_url, size))
           end
         end
       end
