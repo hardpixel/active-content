@@ -14,12 +14,7 @@ module ActiveContent
         delegate_attribute :value, cast_type, value_opts
 
         before_save do
-          current = send(field)
-          default = self.class.try(:"_attribute_#{field}_value_default")
-
-          if current.blank? or current == default
-            send :"#{field}_metum=", nil
-          end
+          send(:"#{field}_metum=", nil) if send(field).blank?
         end
       end
     end
