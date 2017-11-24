@@ -24,17 +24,12 @@ module ActiveContent
           self.send :"#{name}=", names
         end
 
-        query = self.includes(name)
-        blank = { taxonomies: { id: nil } }
-
         scope :"with_#{name}", -> (*ids) do
-          id = { taxonomies: { id: ids } }
-          ids.empty? ? query.where.not(blank) : query.where(id)
+          joins(name).where(taxonomies: { id: ids })
         end
 
         scope :"without_#{name}", -> (*ids) do
-          id = { taxonomies: { id: ids } }
-          ids.empty? ? query.where(blank) : query.where(blank).or(query.where.not(id))
+          joins(name).where.not(taxonomies: { id: ids })
         end
       end
 
