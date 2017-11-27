@@ -8,7 +8,7 @@ module ActiveContent
         options = options.merge(through: :"#{name}_taxonomizations")
         setting = { as: :taxonomizable, class_name: 'ActiveContent::Taxonomization', autosave: true, dependent: :destroy }
 
-        has_many options[:through], setting
+        has_many options[:through], -> { where field: "#{name}".downcase }, setting
         has_many name, options
 
         define_method :"#{name}_list" do
@@ -34,10 +34,12 @@ module ActiveContent
       end
 
       def has_taxonomized(name, options={})
-        assoc_name = "#{name}".pluralize
-        assoc_type = (options[:class_name] || "#{name}".classify).constantize.base_class.name
+        assoc_name  = "#{name}".pluralize
+        assoc_field = options[:through] || self.name.parameterize.underscore.pluralize
+        assoc_type  = (options[:class_name] || "#{name}".classify).constantize.base_class.name
+        assoc_proc  = -> { where taxonomizations: { field: assoc_field } }
 
-        has_many :"#{assoc_name}", through: :taxonomizations, source: :taxonomizable, source_type: "#{assoc_type}"
+        has_many :"#{assoc_name}", assoc_proc, through: :taxonomizations, source: :taxonomizable, source_type: "#{assoc_type}"
       end
     end
   end
