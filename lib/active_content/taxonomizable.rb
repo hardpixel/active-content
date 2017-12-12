@@ -25,21 +25,39 @@ module ActiveContent
         end
 
         scope :"with_#{name}", -> (*ids) do
-          joins(name).where(taxonomies: { id: ids })
+          params = ids.flatten
+          query  = joins(:"#{name}")
+          query  = query.where(taxonomies: { id: params }) if params.any?
+
+          query.distinct(true)
         end
 
         scope :"without_#{name}", -> (*ids) do
-          joins(name).where.not(taxonomies: { id: ids })
+          joins(:"#{name}").where.not(taxonomies: { id: ids }).distinct(true)
         end
       end
 
       def has_taxonomized(name, options={})
         assoc_name  = "#{name}".pluralize
         assoc_field = options[:through] || self.name.parameterize.underscore.pluralize
-        assoc_type  = (options[:class_name] || "#{name}".classify).constantize.base_class.name
+        assoc_class = (options[:class_name] || "#{name}".classify).constantize.base_class
+        assoc_table = assoc_class.table_name
+        assoc_type  = assoc_class.name
         assoc_proc  = -> { where taxonomizations: { field: assoc_field } }
 
         has_many :"#{assoc_name}", assoc_proc, through: :taxonomizations, source: :taxonomizable, source_type: "#{assoc_type}"
+
+        scope :"with_#{assoc_name}", -> (*ids) do
+          params = ids.flatten
+          query  = joins(:"#{assoc_name}")
+          query  = query.where(assoc_table => { id: params }) if params.any?
+
+          query.distinct(true)
+        end
+
+        scope :"without_#{assoc_name}", -> (*ids) do
+          joins(:"#{assoc_name}").where.not(assoc_table => { id: ids }).distinct(true)
+        end
       end
     end
   end
