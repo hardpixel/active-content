@@ -12,10 +12,6 @@ module ActiveContent
 
         has_one :"#{field}_metum", assoc_proc, assoc_opts
         delegate_attribute :value, cast_type, value_opts
-
-        before_save do
-          send(:"#{field}_metum=", nil) if send(field).blank?
-        end
       end
     end
   end
