@@ -9,7 +9,7 @@ module ActiveContent
 
         options   = args.extract_options!
         templates = args
-        default   = options.fetch, :default, templates.first
+        default   = options.fetch :default, templates.first
 
         enumerize :template, in: templates, predicates: { prefix: true }, default: default
 
