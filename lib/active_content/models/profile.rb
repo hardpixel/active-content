@@ -5,9 +5,6 @@ class ActiveContent::Profile < ActiveRecord::Base
   # Belongs associations
   belongs_to :profileable, polymorphic: true, optional: true
 
-  # Mount carrierwave uploader
-  mount_uploader :image
-
   # Name composed by first and last name
   def name
     if first_name or last_name

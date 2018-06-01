@@ -6,8 +6,23 @@ module ActiveContent
       def has_profile(options={})
         include ActiveDelegate
 
-        has_one :profile, as: :profileable, class_name: 'ActiveContent::Profile', autosave: true, dependent: :destroy
+        assoc_class    = options.delete(:class_name) || 'ActiveContent::Profile'
+        image_uploader = options.delete(:uploader)
+
+        has_one :profile, as: :profileable, class_name: assoc_class, autosave: true, dependent: :destroy
         delegate_attributes options.except(:to).merge(to: :profile, allow_nil: true)
+
+        if image_uploader
+          ActiveContent::Profile.mount_uploader :image, image_uploader do
+            alias :profile_model :model
+
+            def model
+              profile_model.profileable
+            end
+          end
+        else
+          ActiveContent::Profile.mount_uploader :image
+        end
 
         before_save do
           prof_foreign = self.class.profiles_attribute_names.map(&:to_s)
