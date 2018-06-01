@@ -12,17 +12,7 @@ module ActiveContent
         has_one :profile, as: :profileable, class_name: assoc_class, autosave: true, dependent: :destroy
         delegate_attributes options.except(:to).merge(to: :profile, allow_nil: true)
 
-        if image_uploader
-          ActiveContent::Profile.mount_uploader :image, image_uploader do
-            alias :original_model :model
-
-            def model
-              original_model.respond_to?(:profileable) ? original_model.profileable : original_model
-            end
-          end
-        else
-          ActiveContent::Profile.mount_uploader :image
-        end
+        ActiveContent::Profile.add_image_uploader name, image_uploader
 
         before_save do
           prof_foreign = self.class.profiles_attribute_names.map(&:to_s)
