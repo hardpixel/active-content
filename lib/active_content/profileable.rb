@@ -14,10 +14,10 @@ module ActiveContent
 
         if image_uploader
           ActiveContent::Profile.mount_uploader :image, image_uploader do
-            alias :profile_model :model
+            alias :original_model :model
 
             def model
-              profile_model.profileable
+              original_model.respond_to?(:profileable) ? original_model.profileable : original_model
             end
           end
         else
