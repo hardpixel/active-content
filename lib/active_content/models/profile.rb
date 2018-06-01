@@ -15,7 +15,8 @@ class ActiveContent::Profile < ActiveRecord::Base
 
     self.class.uploaders[:image] = begin
       self.class.image_uploaders[class_name] ||
-      self.class.image_uploaders[base_class]
+      self.class.image_uploaders[base_class] ||
+      self.class.image_uploaders[:image]
     end
   end
 
@@ -42,7 +43,7 @@ class ActiveContent::Profile < ActiveRecord::Base
     self.image_uploaders ||= {}
     self.mount_uploader :image, build_image_uploader(assoc_name, uploader)
 
-    class_name = :"#{assoc_name.underscore}_image"
+    class_name = uploader ? :"#{assoc_name.underscore}_image" : :image
     self.image_uploaders[class_name] = self.uploaders[:image]
   end
 
