@@ -10,13 +10,15 @@ class ActiveContent::Profile < ActiveRecord::Base
 
   # Pick correct uploader after initialize for profileable class
   after_initialize do
-    class_name = :"#{profileable.class.name.underscore}_image"
-    base_class = :"#{profileable.class.base_class.name.underscore}_image"
+    unless profileable.nil?
+      class_name = :"#{profileable.class.name.underscore}_image"
+      base_class = :"#{profileable.class.base_class.name.underscore}_image"
 
-    self.class.uploaders[:image] = begin
-      self.class.image_uploaders[class_name] ||
-      self.class.image_uploaders[base_class] ||
-      self.class.image_uploaders[:image]
+      self.class.uploaders[:image] = begin
+        self.class.image_uploaders[class_name] ||
+        self.class.image_uploaders[base_class] ||
+        self.class.image_uploaders[:image]
+      end
     end
   end
 
