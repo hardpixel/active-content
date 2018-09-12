@@ -10,7 +10,7 @@ module ActiveContent
         image_uploader = options.delete(:uploader) || ActiveContent.config.profile_image_uploader
 
         has_one :profile, as: :profileable, class_name: assoc_class, autosave: true, dependent: :destroy
-        delegate_attributes options.except(:to).merge(to: :profile, allow_nil: true)
+        delegate_attributes options.except(:to).merge(to: :profile, allow_nil: true, localized: ActiveContent.config.profile_locale_accessors)
 
         ActiveContent::Profile.add_image_uploader name, image_uploader
 

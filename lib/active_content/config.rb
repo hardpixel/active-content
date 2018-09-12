@@ -12,5 +12,7 @@ module ActiveContent
 
     # Options without defaults
     config_accessor(:profile_image_uploader)
+    config_accessor(:profile_locale_accessors)
+    config_accessor(:metum_locale_accessors)
   end
 end
