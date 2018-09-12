@@ -4,7 +4,7 @@ module ActiveContent
 
     class_methods do
       def has_attachment(name, field, options={})
-        assoc_opts = { as: :attachable, class_name: 'ActiveContent::Attachment', autosave: true, dependent: :destroy }
+        assoc_opts = { as: :attachable, class_name: ActiveContent.config.attachment_class_name, autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
 
         multiple = options.delete(:multiple)

@@ -6,7 +6,7 @@ module ActiveContent
       def has_taxonomy(name, options={})
         options = options.reverse_merge(class_name: "#{name}".classify, source: :taxonomy)
         options = options.merge(through: :"#{name}_taxonomizations")
-        setting = { as: :taxonomizable, class_name: 'ActiveContent::Taxonomization', autosave: true, dependent: :destroy }
+        setting = { as: :taxonomizable, class_name: ActiveContent.config.taxonomization_class_name, autosave: true, dependent: :destroy }
 
         has_many options[:through], -> { where field: "#{name}".downcase }, setting
         has_many name, options

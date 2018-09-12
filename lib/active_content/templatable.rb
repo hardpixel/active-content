@@ -13,7 +13,7 @@ module ActiveContent
 
         enumerize :template, in: templates, predicates: { prefix: true }, default: default
 
-        has_one :view_template, as: :templatable, class_name: 'ActiveContent::Template', autosave: true, dependent: :destroy
+        has_one :view_template, as: :templatable, class_name: ActiveContent.config.template_class_name, autosave: true, dependent: :destroy
         delegate_attribute :name, :string, to: :view_template, prefix: 'template', alias: :template, finder: true, scope: true
       end
     end

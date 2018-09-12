@@ -6,7 +6,7 @@ module ActiveContent
       def has_meta(field, cast_type, options={})
         include ActiveDelegate
 
-        assoc_opts = { as: :metable, class_name: 'ActiveContent::Metum', autosave: true, dependent: :destroy }
+        assoc_opts = { as: :metable, class_name: ActiveContent.config.metum_class_name, autosave: true, dependent: :destroy }
         assoc_proc = -> { where field: field }
         value_opts = options.merge(to: :"#{field}_metum", prefix: field, alias: field, cast: true)
 
