@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activerecord', '~> 5.0'
-  spec.add_dependency 'active_delegate', '~> 0.1'
+  spec.add_dependency 'active_delegate', '~> 1.0'
   spec.add_dependency 'ancestry', '~> 3.0'
   spec.add_dependency 'enumerize', '~> 2.1'
   spec.add_dependency 'carrierwave', '~> 1.2'
