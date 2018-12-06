@@ -7,6 +7,8 @@ class ActiveContent::Template < ActiveRecord::Base
 
   # Redefine name reader
   def name
-    super.nil? ? super : ActiveSupport::StringInquirer.new(super)
+    ActiveSupport::StringInquirer.new(
+      super || self.class.template.default_value
+    )
   end
 end
