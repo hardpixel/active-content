@@ -1,4 +1,5 @@
 require 'active_support'
+require 'active_record'
 require 'ancestry'
 require 'enumerize'
 require 'carrierwave'
