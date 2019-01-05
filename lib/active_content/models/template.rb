@@ -8,7 +8,14 @@ class ActiveContent::Template < ActiveRecord::Base
   # Redefine name reader
   def name
     ActiveSupport::StringInquirer.new(
-      super || self.class.template.default_value
+      super || default_template || 'default'
     )
+  end
+
+  private
+
+  # Get default template name
+  def default_template
+    templatable.class.template.default_value if templatable.present?
   end
 end
