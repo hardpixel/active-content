@@ -19,20 +19,20 @@ class ActiveContent::Profile < ActiveRecord::Base
   end
 
   def self.build_image_uploader(assoc_name, uploader_class)
-    if uploader_class
-      uploader = Class.new(uploader_class)
-      const_set("#{assoc_name}#{uploader_class}", uploader)
+    return unless uploader_class
 
-      uploader.class_eval do
-        alias :original_model :model
+    uploader = Class.new(uploader_class)
+    const_set("#{assoc_name}#{uploader_class}", uploader)
 
-        def model
-          original_model.profileable
-        end
+    uploader.class_eval do
+      alias :original_model :model
+
+      def model
+        original_model.profileable
       end
-
-      uploader
     end
+
+    uploader
   end
 
   def self.add_image_uploader(assoc_name, uploader)
@@ -44,8 +44,6 @@ class ActiveContent::Profile < ActiveRecord::Base
   end
 
   def name
-    if first_name or last_name
-      "#{first_name} #{last_name}".strip
-    end
+    "#{first_name} #{last_name}".strip if first_name || last_name
   end
 end
