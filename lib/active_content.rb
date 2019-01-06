@@ -10,18 +10,14 @@ require 'active_content/version'
 module ActiveContent
   extend ActiveSupport::Concern
 
-  # Set attr accessors
   mattr_accessor :config
 
-  # Set config options
   @@config = Config.new
 
-  # Setup module config
   def self.setup
     yield config
   end
 
-  # Autoload concerns
   autoload :Taxonomizable,  'active_content/taxonomizable'
   autoload :Templatable,    'active_content/templatable'
   autoload :Uploadable,     'active_content/uploadable'
@@ -30,7 +26,6 @@ module ActiveContent
   autoload :Metable,        'active_content/metable'
   autoload :Profileable,    'active_content/profileable'
 
-  # Autoload models
   autoload :Attachment,     'active_content/models/attachment'
   autoload :Content,        'active_content/models/content'
   autoload :Metum,          'active_content/models/metum'
@@ -41,7 +36,6 @@ module ActiveContent
   autoload :Template,       'active_content/models/template'
   autoload :Upload,         'active_content/models/upload'
 
-  # Include modules
   included do
     include ActiveContent::Taxonomizable
     include ActiveContent::Templatable

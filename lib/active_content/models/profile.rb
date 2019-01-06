@@ -1,14 +1,10 @@
 class ActiveContent::Profile < ActiveRecord::Base
-  # Define class attributes
   class_attribute :image_uploaders
 
-  # Set table name
   self.table_name = 'profiles'
 
-  # Belongs associations
   belongs_to :profileable, polymorphic: true, optional: true
 
-  # Pick correct uploader after initialize for profileable class
   after_initialize do
     unless profileable.nil?
       class_name = :"#{profileable.class.name.underscore}_image"
@@ -22,7 +18,6 @@ class ActiveContent::Profile < ActiveRecord::Base
     end
   end
 
-  # Build new image uploader class
   def self.build_image_uploader(assoc_name, uploader_class)
     if uploader_class
       uploader = Class.new(uploader_class)
@@ -40,7 +35,6 @@ class ActiveContent::Profile < ActiveRecord::Base
     end
   end
 
-  # Add uploader for a profilable class
   def self.add_image_uploader(assoc_name, uploader)
     self.image_uploaders ||= {}
     self.mount_uploader :image, build_image_uploader(assoc_name, uploader)
@@ -49,7 +43,6 @@ class ActiveContent::Profile < ActiveRecord::Base
     self.image_uploaders[class_name] = self.uploaders[:image]
   end
 
-  # Name composed by first and last name
   def name
     if first_name or last_name
       "#{first_name} #{last_name}".strip
