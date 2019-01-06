@@ -6,7 +6,7 @@ module ActiveContent
   class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
 
-    MODEL_NAMES  = ['content', 'taxonomy', 'upload', 'template', 'relation', 'metum', 'profile'].freeze
+    MODEL_NAMES = ['content', 'taxonomy', 'upload', 'template', 'relation', 'metum', 'profile'].freeze
 
     desc 'Generates migrations to add CMS tables.'
     source_root File.expand_path('../templates', __FILE__)

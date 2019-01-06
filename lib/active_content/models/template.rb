@@ -4,9 +4,7 @@ class ActiveContent::Template < ActiveRecord::Base
   belongs_to :templatable, polymorphic: true, optional: true
 
   def name
-    ActiveSupport::StringInquirer.new(
-      super || default_template || 'default'
-    )
+    ActiveSupport::StringInquirer.new(super || default_template || 'default')
   end
 
   private
